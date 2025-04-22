@@ -1,0 +1,119 @@
+from docx import Document
+from docx.shared import Pt
+from docx.enum.text import WD_PARAGRAPH_ALIGNMENT
+
+# Create a new Document
+document = Document()
+
+# Title / Header
+header = document.add_paragraph()
+header.alignment = WD_PARAGRAPH_ALIGNMENT.CENTER
+header_run = header.add_run("Honor Minor")
+header_run.font.name = "Times New Roman"
+header_run.font.size = Pt(24)
+
+contact_info = document.add_paragraph()
+contact_info.alignment = WD_PARAGRAPH_ALIGNMENT.CENTER
+contact_info_text = (
+    "Chicago, IL\n"
+    "(312) 307-2227\n"
+    "honorminor82678@gmail.com\n"
+    "Availability: Wednesday – Friday"
+)
+contact_info_run = contact_info.add_run(contact_info_text)
+contact_info_run.font.name = "Times New Roman"
+contact_info_run.font.size = Pt(12)
+
+document.add_paragraph("")  # Add a blank paragraph for spacing
+
+# Objective Section
+document.add_heading("Objective", level=1)
+objective_text = (
+    "Motivated and hardworking high school student with junior-level credits seeking a part-time position "
+    "to gain hands-on experience in a professional environment. Strong communication, organization, and "
+    "multitasking skills with a passion for learning and helping others."
+)
+objective_paragraph = document.add_paragraph(objective_text)
+for run in objective_paragraph.runs:
+    run.font.name = "Times New Roman"
+    run.font.size = Pt(12)
+
+# Experience Section
+document.add_heading("Experience", level=1)
+
+# Honor The Collective Business Suites
+experience1 = document.add_paragraph("Honor The Collective Business Suites – Chicago, IL")
+experience1.runs[0].font.name = "Times New Roman"
+experience1.runs[0].font.size = Pt(12)
+experience1b = document.add_paragraph("Owner & Operator | January 2023 – March 2025")
+experience1b.runs[0].font.name = "Times New Roman"
+experience1b.runs[0].font.size = Pt(12)
+
+experience_points1 = [
+    "Successfully managed daily operations while balancing school responsibilities.",
+    "Oversaw bookings and client communications for a shared business space.",
+    "Demonstrated leadership and effective time management as a young entrepreneur."
+]
+for point in experience_points1:
+    p = document.add_paragraph("- " + point, style='List Bullet')
+    for run in p.runs:
+        run.font.name = "Times New Roman"
+        run.font.size = Pt(12)
+
+# Honor Your Lux Experience
+experience2 = document.add_paragraph("Honor Your Lux Experience – Chicago, IL")
+experience2.runs[0].font.name = "Times New Roman"
+experience2.runs[0].font.size = Pt(12)
+experience2b = document.add_paragraph("Founder")
+experience2b.runs[0].font.name = "Times New Roman"
+experience2b.runs[0].font.size = Pt(12)
+
+experience_points2 = [
+    "Launched and maintained a customer-focused brand as part of a personal business portfolio.",
+    "Managed marketing, product/service delivery, and customer relations independently."
+]
+for point in experience_points2:
+    p = document.add_paragraph("- " + point, style='List Bullet')
+    for run in p.runs:
+        run.font.name = "Times New Roman"
+        run.font.size = Pt(12)
+
+# Education Section
+document.add_heading("Education", level=1)
+education = document.add_paragraph("Lindblom Math and Science Academy – Chicago, IL")
+education.runs[0].font.name = "Times New Roman"
+education.runs[0].font.size = Pt(12)
+education_info = document.add_paragraph("Sophomore (Junior-level credits) | Expected Graduation: 2027")
+education_info.runs[0].font.name = "Times New Roman"
+education_info.runs[0].font.size = Pt(12)
+coursework = document.add_paragraph("Relevant Coursework: English III, Algebra II / Trigonometry, U.S. History, Chemistry")
+coursework.runs[0].font.name = "Times New Roman"
+coursework.runs[0].font.size = Pt(12)
+
+# Skills Section
+document.add_heading("Skills", level=1)
+skills = [
+    "Excellent communication skills, both written and verbal.",
+    "Fast learner with the ability to adapt quickly to new environments.",
+    "Dependable, consistently meeting responsibilities and deadlines.",
+    "Strong leadership qualities with experience in guiding and supporting team members.",
+    "Highly driven with a steadfast desire to succeed and grow."
+]
+for skill in skills:
+    p = document.add_paragraph("- " + skill, style='List Bullet')
+    for run in p.runs:
+        run.font.name = "Times New Roman"
+        run.font.size = Pt(12)
+
+# Activities & Volunteer Work Section
+document.add_heading("Activities & Volunteer Work", level=1)
+activities = document.add_paragraph("Softball Team – First Baseman")
+activities.runs[0].font.name = "Times New Roman"
+activities.runs[0].font.size = Pt(12)
+volunteer = document.add_paragraph("Volunteer Work: Feeding the homeless, participation in the Hot Chocolate Run community event")
+volunteer.runs[0].font.name = "Times New Roman"
+volunteer.runs[0].font.size = Pt(12)
+
+# Save the document
+document.save("Honor_Minor_Resume.docx")
+print("Word document generated successfully as 'Honor_Minor_Resume.docx'")
